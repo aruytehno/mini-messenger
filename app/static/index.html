@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>mini-messenger</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><h1>mini<span>messenger</span></h1><span class="badge">Только слова. На 24 часа.</span></header>
+    <p id="notice" role="status" aria-live="polite"></p>
+    <section id="auth" class="card auth">
+      <h2 id="auth-title">С возвращением</h2>
+      <p>Личные разговоры, которые не остаются навсегда.</p>
+      <form id="auth-form">
+        <label>Логин<input id="login" autocomplete="username" required minlength="3" maxlength="32" pattern="[A-Za-z0-9_]{3,32}" placeholder="Например, fox"></label>
+        <small>3–32 символа: латинские буквы, цифры, подчёркивание.</small>
+        <label>Пароль<input id="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128"></label>
+        <small>От 8 символов. Почта и телефон не нужны.</small>
+        <button id="auth-submit">Войти</button>
+      </form>
+      <button id="auth-toggle" class="secondary">Создать аккаунт</button>
+    </section>
+    <section id="workspace" hidden>
+      <div class="toolbar"><strong id="account"></strong><span id="connection">Подключение…</span><button id="settings" class="secondary">Пароль</button><button id="logout" class="secondary">Выйти</button></div>
+      <div class="layout">
+        <aside class="card">
+          <h2>Диалоги</h2>
+          <form id="search-form"><label for="peer">Начать разговор</label><div class="search"><input id="peer" required maxlength="32" placeholder="Точный логин"><button aria-label="Найти пользователя">＋</button></div></form>
+          <nav id="dialogs" aria-label="Личные диалоги"></nav>
+        </aside>
+        <section class="card conversation">
+          <h2 id="chat-title">Выберите собеседника</h2>
+          <p class="hint">Сообщения исчезают через 24 часа после отправки.</p>
+          <button id="older" class="secondary" hidden>Загрузить предыдущие</button>
+          <div id="messages" aria-live="polite"><p class="empty">Найдите друга по логину и начните разговор.</p></div>
+          <form id="message-form" hidden><label class="sr-only" for="message">Сообщение</label><textarea id="message" rows="2" maxlength="4000" placeholder="Напишите сообщение…" required></textarea><button id="send">Отправить</button></form>
+        </section>
+      </div>
+      <dialog id="password-dialog"><form id="password-form"><h2>Сменить пароль</h2><label>Текущий пароль<input id="old-password" type="password" autocomplete="current-password" required maxlength="128"></label><label>Новый пароль<input id="new-password" type="password" autocomplete="new-password" required minlength="8" maxlength="128"></label><button>Сохранить</button><button type="button" id="close-settings" class="secondary">Отмена</button></form></dialog>
+    </section>
+    <footer>mini-messenger · небольшой круг, живые разговоры</footer>
+  </main>
+</body>
+</html>
